@@ -1,4 +1,4 @@
-<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+<nav class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -62,17 +62,17 @@
 
                 <div class="buttons">
                     {% if not app.user %}
-                        <a href="{{ path('app_login') }}"class="button is-primary">
+                        <a href="{{ path('app_login') }}"class="button is-info">
                             <strong>Se Connecter</strong>
                         </a>
                     {% endif %}
 
                     {% if app.user %}
-                        <a href="{{ path('app_logout') }}"  class="button is-primary" >
+                        <a href="{{ path('app_logout') }}"  class="button is-info" >
                             <strong>Se Déconnecter</strong>
                         </a>
                     {% endif %}
-                    <a class="button is-primary">
+                    <a class="button is-info">
                         <strong>Nous contacter</strong>
                     </a>
                 </div>

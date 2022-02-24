@@ -7,6 +7,9 @@
     <h1 class="title is-3 has-text-centered">Créer Un compte</h1>
 
     {{ form_start(registrationForm) }}
+    <div class="field has-addons has-addons-centered">
+        <label class="label">Identité</label>
+    </div>
     <div class="field has-addons has-addons-centered is-grouped">
         <p class="control has-icons-left has-icons-right">
             {{ form_widget(registrationForm.numeroDeLicence,{'attr':{'class':'input form-control','placeholder':'Numéro de Licence'}}) }}
@@ -18,18 +21,23 @@
             {{ form_widget(registrationForm.prenom,{'attr':{'class':'input form-control','placeholder':'Votre Prénom'}}) }}
         </p>
     </div>
+    <div class="field has-addons has-addons-centered">
+        <label class="label">Naissance</label>
+    </div>
     <div class="field has-addons has-addons-centered is-grouped">
         <p class="control has-icons-left has-icons-right">
             {{ form_widget(registrationForm.dateNaissance,{'attr':{'class':'input form-control','placeholder':'Votre Date de naissance'}}) }}
         </p>
-         <p class="control has-icons-left has-icons-right">
-            {{ form_widget(registrationForm.paysNaissance,{'attr':{'class':'input form-control','placeholder':'Votre Pays de Naissance'}}) }}
-        </p>
         <p class="control has-icons-left has-icons-right">
             {{ form_widget(registrationForm.villeNaissance,{'attr':{'class':'input form-control','placeholder':'Votre Ville de Naissance'}}) }}
         </p>
+         <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.paysNaissance,{'attr':{'class':'input form-control','placeholder':'Votre Pays de Naissance'}}) }}
+        </p>
     </div>
-
+    <div class="field has-addons has-addons-centered">
+        <label class="label">Adresse</label>
+    </div>
     <div class="field has-addons has-addons-centered is-grouped">
         <p class="control has-icons-left has-icons-right">
             {{ form_widget(registrationForm.adresse,{'attr':{'class':'input form-control','placeholder':'Votre Adresse'}}) }}
@@ -40,6 +48,9 @@
         <p class="control has-icons-left has-icons-right">
             {{ form_widget(registrationForm.ville,{'attr':{'class':'input form-control','placeholder':'Votre Ville'}}) }}
         </p>
+    </div>
+    <div class="field has-addons has-addons-centered">
+        <label class="label">Contact</label>
     </div>
     <div class="field has-addons has-addons-centered is-grouped">
         <p class="control has-icons-left has-icons-right">
@@ -56,6 +67,9 @@
         <p class="control has-icons-left has-icons-right">
             {{ form_widget(registrationForm.telephone2,{'attr':{'class':'input form-control','placeholder':'Un deuxième ?'}}) }}
         </p>
+    </div>
+    <div class="field has-addons has-addons-centered">
+        <label class="label">Niveau et Mot de passe</label>
     </div>
     <div class="field has-addons has-addons-centered is-grouped">
         <p class="control has-icons-left has-icons-right">
