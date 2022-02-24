@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+    <h1 class="title is-3 has-text-centered">Créer Un compte</h1>
+
+    {{ form_start(registrationForm) }}
+    <div class="field has-addons has-addons-centered is-grouped">
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.numeroDeLicence,{'attr':{'class':'input form-control','placeholder':'Numéro de Licence'}}) }}
+        </p>
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.nom,{'attr':{'class':'input form-control','placeholder':'Votre Nom'}}) }}
+        </p>
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.prenom,{'attr':{'class':'input form-control','placeholder':'Votre Prénom'}}) }}
+        </p>
+    </div>
+    <div class="field has-addons has-addons-centered is-grouped">
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.dateNaissance,{'attr':{'class':'input form-control','placeholder':'Votre Date de naissance'}}) }}
+        </p>
+         <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.paysNaissance,{'attr':{'class':'input form-control','placeholder':'Votre Pays de Naissance'}}) }}
+        </p>
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.villeNaissance,{'attr':{'class':'input form-control','placeholder':'Votre Ville de Naissance'}}) }}
+        </p>
+    </div>
+
+    <div class="field has-addons has-addons-centered is-grouped">
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.adresse,{'attr':{'class':'input form-control','placeholder':'Votre Adresse'}}) }}
+        </p>
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.codePostal,{'attr':{'class':'input form-control','placeholder':'Votre Code Postal'}}) }}
+        </p>
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.ville,{'attr':{'class':'input form-control','placeholder':'Votre Ville'}}) }}
+        </p>
+    </div>
+    <div class="field has-addons has-addons-centered is-grouped">
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.mail1,{'attr':{'class':'input form-control','placeholder':'Votre premier mail'}}) }}
+        </p>
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.mail2,{'attr':{'class':'input form-control','placeholder':'Un deuxième ?'}}) }}
+        </p>
+    </div>
+    <div class="field has-addons has-addons-centered is-grouped">
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.telephone1,{'attr':{'class':'input form-control','placeholder':'Votre Numéro De Téléphone'}}) }}
+        </p>
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.telephone2,{'attr':{'class':'input form-control','placeholder':'Un deuxième ?'}}) }}
+        </p>
+    </div>
+    <div class="field has-addons has-addons-centered is-grouped">
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.niveau,{'attr':{'class':'select','label':'Niveau '}}) }}
+        </p>
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(registrationForm.plainPassword,{'attr':{'class':'input form-control','placeholder':'Votre Mot de passe'}}) }}
+        </p>
+    </div>
+    <div class="field has-addons has-addons-centered is-grouped">
+        <label>
+            J'accepte de m'inscrire
+        {{ form_widget(registrationForm.agreeTerms,{'attr':{'class':'checkbox'}}) }}
+        </label>
+    </div>
+
+    <div class="field field is-grouped is-grouped-centered">
+        <p class="control">
+            <button class="button is-primary" type="submit">
+                Créer un compte
+            </button>
+        </p>
+        <p class="control">
+            <a class="button is-light">
+                Annuler
+            </a>
+        </p>
+    </div>
+    {{ form_end(registrationForm) }}
+{% endblock %}

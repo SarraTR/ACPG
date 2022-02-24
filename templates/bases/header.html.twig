@@ -1,0 +1,82 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item">
+                Actualité du Club
+            </a>
+
+            <a class="navbar-item">
+                Les différents groupes
+            </a>
+            <a class="navbar-item">
+                L'équipe Entraineurs
+            </a>
+            <a class="navbar-item">
+                Cours
+            </a>
+            <a class="navbar-item">
+                Mon profil
+            </a>
+
+
+
+
+
+        </div>
+        <a >
+            <img src="{{ asset('image/LogoArtistique.jpg') }}" width="150" height="90">
+        </a>
+
+        <div class="navbar-end">
+            {% if is_granted ('ROLE_ADMIN') %}
+            <div class="navbar-item">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Administration
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a href="{{ path('app_register') }}" class="navbar-item">
+                        Ajouter un licencié
+                    </a>
+                    <a class="navbar-item">
+                        Ajouter une actualité
+                    </a>
+                    <a class="navbar-item">
+                        Ajouter un cours
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+
+
+                <div class="buttons">
+                    {% if not app.user %}
+                        <a href="{{ path('app_login') }}"class="button is-primary">
+                            <strong>Se Connecter</strong>
+                        </a>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <a href="{{ path('app_logout') }}"  class="button is-primary" >
+                            <strong>Se Déconnecter</strong>
+                        </a>
+                    {% endif %}
+                    <a class="button is-primary">
+                        <strong>Nous contacter</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
