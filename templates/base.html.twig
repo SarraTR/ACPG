@@ -14,17 +14,19 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+
     <header>
         {% block header %}
             {% include 'bases/header.html.twig' %}
         {% endblock %}
     </header>
         {% block body %}{% endblock %}
+<body>
+
+</body>
     <footer>
         {% block footer %}
             {% include 'bases/footer.html.twig' %}
         {% endblock %}
     </footer>
-    </body>
 </html>

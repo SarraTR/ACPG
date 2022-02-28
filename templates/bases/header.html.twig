@@ -1,40 +1,53 @@
 <nav class="navbar is-info" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-
+    <div class="navbar-brand is-align-content-space-around">
+        <a class="has-text-centered" >
+            <img src="{{ asset('image/LogoACPG.jpg') }}" width="150" height="90">
+        </a>
+    </div>
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </a>
-    </div>
-
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
             <a class="navbar-item">
                 Actualité du Club
             </a>
-
             <a class="navbar-item">
-                Les différents groupes
+                Saison 2022/2023
             </a>
-            <a class="navbar-item">
-                L'équipe Entraineurs
-            </a>
-            <a class="navbar-item">
-                Cours
-            </a>
-            <a class="navbar-item">
-                Mon profil
-            </a>
+            <div class="navbar-item">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Le Club
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            Les différentes équipes
+                        </a>
+                        <a class="navbar-item">
+                            L'équipe Entraineurs
+                        </a>
+                        {% if app.user %}
+                            <a class="navbar-item" href="{{ path('cours_afficher') }}">
+                                Les Cours
+                            </a>
+                        {% endif %}
 
-
-
-
-
+                    </div>
+                </div>
+            </div>
         </div>
-        <a >
-            <img src="{{ asset('image/LogoArtistique.jpg') }}" width="150" height="90">
-        </a>
+
+
+
+
+
+
+
+
+
 
         <div class="navbar-end">
             {% if is_granted ('ROLE_ADMIN') %}
@@ -51,7 +64,7 @@
                     <a class="navbar-item">
                         Ajouter une actualité
                     </a>
-                    <a class="navbar-item">
+                    <a href="{{ path('cours') }}"class="navbar-item">
                         Ajouter un cours
                     </a>
                 </div>
@@ -68,6 +81,9 @@
                     {% endif %}
 
                     {% if app.user %}
+                        <a class="button is-info" >
+                            Mon profil
+                        </a>
                         <a href="{{ path('app_logout') }}"  class="button is-info" >
                             <strong>Se Déconnecter</strong>
                         </a>

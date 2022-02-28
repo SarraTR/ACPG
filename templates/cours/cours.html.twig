@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <h1 class="title is-3 has-text-centered">Ajouter un cours</h1>
+
+    {{ form_start(coursFormulaire) }}
+    <div class="field has-addons has-addons-centered">
+        <label class="label">Date et heure et durée en minutes</label>
+    </div>
+    <div class="field has-addons has-addons-centered is-grouped">
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(coursFormulaire.date,{'attr':{'class':'input form-control'}}) }}
+        </p>
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(coursFormulaire.heureDebut,{'attr':{'class':'input form-control'}}) }}
+        </p>
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(coursFormulaire.dureeMinutes,{'attr':{'class':'input form-control','placeholder':'Durée en minutes'}}) }}
+        </p>
+    </div>
+    <div class="field has-addons has-addons-centered">
+        <label class="label">Commentaires</label>
+    </div>
+    <div class="field has-addons has-addons-centered is-grouped">
+
+        <p class="control has-icons-left has-icons-right">
+            {{ form_widget(coursFormulaire.commentaire,{'attr':{'class':'input form-control','placeholder':'Commentaires'}}) }}
+        </p>
+    </div>
+        <div class="field has-addons has-addons-centered">
+            <label class="label">Groupe</label>
+        </div>
+<div class="field has-addons has-addons-centered is-grouped">
+
+    <p class="control has-icons-left has-icons-right">
+        {% for child in coursFormulaire.groupe %}
+            {{ form_label(child) }}{{ form_widget(child,{'attr':{'class':'checkbox'}}) }}
+        {% endfor %}
+    </p>
+</div>
+
+    <div class="field field is-grouped is-grouped-centered">
+        <p class="control">
+            <button class="button is-primary" type="submit">
+                Ajouter un cours
+            </button>
+        </p>
+        <p class="control">
+            <a class="button is-light">
+                Annuler
+            </a>
+        </p>
+    </div>
+    {{ form_end(coursFormulaire) }}
+
+{% endblock %}

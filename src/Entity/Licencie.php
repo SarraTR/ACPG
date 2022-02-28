@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\LicencieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LicencieRepository::class)]
 #[UniqueEntity(fields: ['numeroDeLicence'], message: 'There is already an account with this numeroDeLicence')]
@@ -50,20 +53,33 @@ class Licencie implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $ville;
 
+    #[Assert\Regex('/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4}$/')]
     #[ORM\Column(type: 'string', length: 255)]
     private $mail1;
 
+    #[Assert\Regex('/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4}$/')]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $mail2;
 
-    #[ORM\Column(type: 'integer')]
+
+
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Regex('/(\+33[1-9][0-9]{8})|(0[1-9][0-9]{8})$/', message: 'Merci de mettre au format 10 chiffres sans espaces commençant par un 0')]
     private $telephone1;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $telephone2;
 
     #[ORM\ManyToOne(targetEntity: Groupe::class, inversedBy: 'patineurs')]
     private $niveau;
+
+    #[ORM\ManyToMany(targetEntity: Cours::class, inversedBy: 'licencies')]
+    private $coursInscrits;
+
+    public function __construct()
+    {
+        $this->coursInscrits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -255,24 +271,24 @@ class Licencie implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getTelephone1(): ?int
+    public function getTelephone1(): ?string
     {
         return $this->telephone1;
     }
 
-    public function setTelephone1(int $telephone1): self
+    public function setTelephone1(string $telephone1): self
     {
         $this->telephone1 = $telephone1;
 
         return $this;
     }
 
-    public function getTelephone2(): ?int
+    public function getTelephone2(): ?string
     {
         return $this->telephone2;
     }
 
-    public function setTelephone2(?int $telephone2): self
+    public function setTelephone2(?string $telephone2): self
     {
         $this->telephone2 = $telephone2;
 
@@ -288,6 +304,30 @@ class Licencie implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNiveau(?groupe $niveau): self
     {
         $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cours>
+     */
+    public function getCoursInscrits(): Collection
+    {
+        return $this->coursInscrits;
+    }
+
+    public function addCoursInscrit(Cours $coursInscrit): self
+    {
+        if (!$this->coursInscrits->contains($coursInscrit)) {
+            $this->coursInscrits[] = $coursInscrit;
+        }
+
+        return $this;
+    }
+
+    public function removeCoursInscrit(Cours $coursInscrit): self
+    {
+        $this->coursInscrits->removeElement($coursInscrit);
 
         return $this;
     }

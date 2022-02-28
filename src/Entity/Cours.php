@@ -22,7 +22,7 @@ class Cours
     private $heureDebut;
 
     #[ORM\Column(type: 'integer')]
-    private $duréeMinutes;
+    private $dureeMinutes;
 
     #[ORM\ManyToMany(targetEntity: Groupe::class, inversedBy: 'cours')]
     private $groupe;
@@ -31,9 +31,16 @@ class Cours
     #[ORM\JoinColumn(nullable: false)]
     private $auteur;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $commentaire;
+
+    #[ORM\ManyToMany(targetEntity: Licencie::class, mappedBy: 'coursInscrits')]
+    private $licencies;
+
     public function __construct()
     {
         $this->groupe = new ArrayCollection();
+        $this->licencies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,14 +72,14 @@ class Cours
         return $this;
     }
 
-    public function getDuréeMinutes(): ?int
+    public function getDureeMinutes(): ?int
     {
-        return $this->duréeMinutes;
+        return $this->dureeMinutes;
     }
 
-    public function setDuréeMinutes(int $duréeMinutes): self
+    public function setDureeMinutes(int $dureeMinutes): self
     {
-        $this->duréeMinutes = $duréeMinutes;
+        $this->dureeMinutes = $dureeMinutes;
 
         return $this;
     }
@@ -109,6 +116,45 @@ class Cours
     public function setAuteur(?Licencie $auteur): self
     {
         $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    public function getCommentaire(): ?string
+    {
+        return $this->commentaire;
+    }
+
+    public function setCommentaire(?string $commentaire): self
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Licencie>
+     */
+    public function getLicencies(): Collection
+    {
+        return $this->licencies;
+    }
+
+    public function addLicency(Licencie $licency): self
+    {
+        if (!$this->licencies->contains($licency)) {
+            $this->licencies[] = $licency;
+            $licency->addCoursInscrit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLicency(Licencie $licency): self
+    {
+        if ($this->licencies->removeElement($licency)) {
+            $licency->removeCoursInscrit($this);
+        }
 
         return $this;
     }

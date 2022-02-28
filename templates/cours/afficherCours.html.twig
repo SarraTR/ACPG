@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <table class="table is-centered">
+    <thead>
+    <tr>
+        <th><abbr title="Date">Date</abbr></th>
+        <th><abbr title="HeureDuCours">Début du Cours</abbr></th>
+        <th><abbr title="Durée du cours">Durée du Cours</abbr></th>
+        <th><abbr title="Niveau">Niveau</abbr></th>
+        <th><abbr title="Commentaires">Commentaires</abbr></th>
+        <th><abbr title="nbInscrits">Nombres inscrits</abbr></th>
+        <th><abbr title="Actions">Actions</abbr></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for chaqueCours in cours %}
+        {% for chaqueGroupe in chaqueCours.groupe %}
+            {% if chaqueGroupe == niveau or is_granted ('ROLE_ADMIN') %}
+
+                <tr>
+                    <th>{{ chaqueCours.date|format_datetime(locale='fr',pattern="EEEE d/m/Y") }}</th>
+                    <td>{{ chaqueCours.heureDebut |date("H:m")}} </td>
+                    <td>{{ chaqueCours.dureeMinutes }} minutes</td>
+                    <td>
+
+                        {{ chaqueGroupe.niveau }}
+
+                    </td>
+
+                    <td>{{ chaqueCours.commentaire }}</td>
+                    <td>{{ chaqueCours.licencies | length }}</td>
+
+                            <td><a href="{{ path('cours_inscription',{'id' : chaqueCours.id}) }}"><p class="control">
+                                        <button class="button is-primary" type="submit">
+                                            S'inscrire
+                                        </button>
+                                    </p></a></td>
+
+                            <td><a href="{{ path('coursdesister',{'id' : chaqueCours.id}) }}"><p class="control">
+                                        <button class="button is-primary" type="submit">
+                                            Se Désinscrire
+                                        </button>
+                                    </p></a></td>
+
+                </tr>
+            {% endif %}
+        {% endfor %}
+
+{% endfor %}
+
+    </tbody>
+    </table>
+{% endblock %}
+        {% block footer %}
+        {% endblock %}
