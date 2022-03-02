@@ -3,16 +3,22 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <table class="table is-centered">
+    <div class="containerBlanc">
+    <h1 class="title is-3 has-text-centered">Liste des cours pour le stage des prochaines vacances scolaires</h1>
+    <div class="container is-centered">
+    <table class="table is-center is-striped">
     <thead>
     <tr>
         <th><abbr title="Date">Date</abbr></th>
-        <th><abbr title="HeureDuCours">Début du Cours</abbr></th>
-        <th><abbr title="Durée du cours">Durée du Cours</abbr></th>
         <th><abbr title="Niveau">Niveau</abbr></th>
         <th><abbr title="Commentaires">Commentaires</abbr></th>
+        <th><abbr title="HeureDuCours">Début du Cours</abbr></th>
+        <th><abbr title="Durée du cours">Fin du Cours</abbr></th>
         <th><abbr title="nbInscrits">Nombres inscrits</abbr></th>
         <th><abbr title="Actions">Actions</abbr></th>
+        {% if is_granted ('ROLE_ADMIN') %}
+            <th><abbr title="Liste Des Inscrits">Liste</abbr></th>
+        {% endif %}
     </tr>
     </thead>
     <tbody>
@@ -21,29 +27,36 @@
             {% if chaqueGroupe == niveau or is_granted ('ROLE_ADMIN') %}
 
                 <tr>
-                    <th>{{ chaqueCours.date|format_datetime(locale='fr',pattern="EEEE d/m/Y") }}</th>
-                    <td>{{ chaqueCours.heureDebut |date("H:m")}} </td>
-                    <td>{{ chaqueCours.dureeMinutes }} minutes</td>
-                    <td>
-
-                        {{ chaqueGroupe.niveau }}
-
-                    </td>
-
+                    <th class="is-center">{{ chaqueCours.date|format_date('full',locale='fr')}}</th>
+                    <td>{{ chaqueGroupe.niveau }}</td>
                     <td>{{ chaqueCours.commentaire }}</td>
+                    <td>{{ chaqueCours.heureDebut |date("H:m")}} </td>
+                    <td>{{ chaqueCours.heureDebut|date_modify('+'~chaqueCours.dureeMinutes~'minutes')|date ("H:m")}} </td>
                     <td>{{ chaqueCours.licencies | length }}</td>
+                    {% if app.user in chaqueCours.licencies %}
+                        <td><a href="{{ path('coursdesister',{'id' : chaqueCours.id}) }}"><p class="control">
+                                    <button class="button is-rounded" type="submit">
+                                        Se Désinscrire
+                                    </button>
+                                </p></a></td>
+                    {% endif %}
+                    {% if app.user not in chaqueCours.licencies %}
+                        <td><a href="{{ path('cours_inscription',{'id' : chaqueCours.id}) }}"><p class="control">
+                                    <button class="button is-rounded" type="submit">
+                                        S'inscrire
+                                    </button>
+                                </p></a></td>
+                    {% endif %}
+                    {% if is_granted ('ROLE_ADMIN') and chaqueCours.licencies | length > 0 %}
+                        <td><a href="{{ path('cours_liste',{'id' : chaqueCours.id}) }}"><p class="control">
 
-                            <td><a href="{{ path('cours_inscription',{'id' : chaqueCours.id}) }}"><p class="control">
-                                        <button class="button is-primary" type="submit">
-                                            S'inscrire
-                                        </button>
-                                    </p></a></td>
+                                        Voir La liste des inscrits
 
-                            <td><a href="{{ path('coursdesister',{'id' : chaqueCours.id}) }}"><p class="control">
-                                        <button class="button is-primary" type="submit">
-                                            Se Désinscrire
-                                        </button>
-                                    </p></a></td>
+                                </p></a></td>
+                    {% endif %}
+
+
+
 
                 </tr>
             {% endif %}
@@ -53,6 +66,6 @@
 
     </tbody>
     </table>
+    </div>
+    </div>
 {% endblock %}
-        {% block footer %}
-        {% endblock %}

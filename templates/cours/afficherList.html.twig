@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1 class="title is-3 has-text-centered">Cours du {{ cours.date|format_date('full',locale='fr') }} à {{ cours.heureDebut |date("H:m")}}</h1>
+    <h1 class="title is-3 has-text-centered">Liste des inscrits</h1>
+<div class="container is-centered">
+<table class="table is-center is-striped">
+    <thead>
+    <tr>
+        <th><abbr title="Date">Nom</abbr></th>
+        <th><abbr title="HeureDuCours">Prénom</abbr></th>
+        <th><abbr title="Durée du cours">Groupe</abbr></th>
+    </tr>
+    </thead>
+    {% for chaqueLicencie in inscrits %}
+    <tbody>
+    <tr>
+    <th>{{ chaqueLicencie.nom }}</th>
+    <td>{{ chaqueLicencie.prenom }} </td>
+    <td>{{ chaqueLicencie.niveau.niveau }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+</div>
+
+    {% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

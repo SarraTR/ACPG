@@ -3,7 +3,7 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-
+<div class="containerBlanc">
     <h1 class="title is-3 has-text-centered">Ajouter un cours</h1>
 
     {{ form_start(coursFormulaire) }}
@@ -44,16 +44,16 @@
 
     <div class="field field is-grouped is-grouped-centered">
         <p class="control">
-            <button class="button is-primary" type="submit">
+            <button class="button is-rounded is-light" type="submit">
                 Ajouter un cours
             </button>
         </p>
         <p class="control">
-            <a class="button is-light">
+            <a class="button is-rounded is-black" href="{{ path('accueil_accueil') }}">
                 Annuler
             </a>
         </p>
     </div>
     {{ form_end(coursFormulaire) }}
-
+</div>
 {% endblock %}

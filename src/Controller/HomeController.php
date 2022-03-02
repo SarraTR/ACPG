@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\CoursRepository;
+use App\Repository\LicencieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,10 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('', name: '_accueil')]
-    public function index(): Response
+    public function index(LicencieRepository $licencieRepository): Response
     {
-        return $this->render('accueil/index.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
+        if ($user=$this->getUser()) {
+            $user = $this->getUser()->getUserIdentifier();
+            $licencie = $licencieRepository->findOneBy(['numeroDeLicence' => $user]);
+            $coursInscrits = $licencie->getCoursInscrits();
+            return $this->render('accueil/index.html.twig', [
+                compact('coursInscrits')
+            ]);
+        }else{
+            return $this->render('accueil/index.html.twig');
+        }
     }
 }

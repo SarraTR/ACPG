@@ -8,6 +8,7 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
             <link href="~bulma-calendar/dist/css/bulma-calendar.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('css/body.css') }}">
         {% endblock %}
 
         {% block javascripts %}
@@ -20,13 +21,18 @@
             {% include 'bases/header.html.twig' %}
         {% endblock %}
     </header>
-        {% block body %}{% endblock %}
-<body>
+    <body class="body">
+    {% block body %}
 
-</body>
-    <footer>
+
+
+        {% endblock %}
+
+    </body>
+    <footer class="footerPerso">
         {% block footer %}
             {% include 'bases/footer.html.twig' %}
         {% endblock %}
     </footer>
+
 </html>

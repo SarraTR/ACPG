@@ -1,17 +1,19 @@
-<nav class="navbar is-info" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand is-align-content-space-around">
-        <a class="has-text-centered" >
-            <img src="{{ asset('image/LogoACPG.jpg') }}" width="150" height="90">
-        </a>
-    </div>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+<nav class="navbar" role="navigation" aria-label="main navigation">
+
+        <a role="button" class="navbar-burger is-active" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </a>
-    <div id="navbarBasicExample" class="navbar-menu">
+
+    <div id="navbarBasicExample" class="navbar-menu ">
+        <div class="navbar-brand">
+            <a  href="{{ path('accueil_accueil') }}" >
+                <img class="is-align-items-center"  src="{{ asset('image/LogoACPG.jpg') }}" width="92px" >
+            </a>
+        </div>
         <div class="navbar-start">
-            <a class="navbar-item">
+            <a  class="navbar-item">
                 Actualité du Club
             </a>
             <a class="navbar-item">
@@ -38,16 +40,28 @@
                     </div>
                 </div>
             </div>
+            <div class="navbar-item">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Pour Aider les parents
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            Choisir les patins
+                        </a>
+                        <a class="navbar-item">
+                           Les différentes figures
+                        </a>
+                        {% if app.user %}
+                            <a class="navbar-item" href="">
+                                Les liens utiles
+                            </a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
         </div>
-
-
-
-
-
-
-
-
-
 
         <div class="navbar-end">
             {% if is_granted ('ROLE_ADMIN') %}
@@ -69,30 +83,56 @@
                     </a>
                 </div>
             </div>
+            </div>
             {% endif %}
-
-
-
-                <div class="buttons">
                     {% if not app.user %}
-                        <a href="{{ path('app_login') }}"class="button is-info">
+                        <a href="{{ path('app_login') }}"class="navbar-item">
                             <strong>Se Connecter</strong>
                         </a>
                     {% endif %}
 
                     {% if app.user %}
-                        <a class="button is-info" >
+                        <a class="navbar-item" >
                             Mon profil
                         </a>
-                        <a href="{{ path('app_logout') }}"  class="button is-info" >
+                        <a href="{{ path('app_logout') }}"  class="navbar-item" >
                             <strong>Se Déconnecter</strong>
                         </a>
                     {% endif %}
-                    <a class="button is-info">
+                    <a class="navbar-item">
                         <strong>Nous contacter</strong>
                     </a>
-                </div>
+
             </div>
         </div>
-    </div>
 </nav>
+
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
+
+                // Add a click event on each of them
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
+
+                        // Get the target from the "data-target" attribute
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+
+                        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+
+                    });
+                });
+            }
+
+        });
+    </script>
+{% endblock %}
