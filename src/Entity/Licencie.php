@@ -62,7 +62,6 @@ class Licencie implements UserInterface, PasswordAuthenticatedUserInterface
     private $mail2;
 
 
-
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Regex('/(\+33[1-9][0-9]{8})|(0[1-9][0-9]{8})$/', message: 'Merci de mettre au format 10 chiffres sans espaces commençant par un 0')]
     private $telephone1;
@@ -76,9 +75,14 @@ class Licencie implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Cours::class, inversedBy: 'licencies')]
     private $coursInscrits;
 
+    #[ORM\OneToMany(mappedBy: 'auteur', targetEntity: Actualite::class)]
+    private $actualites;
+
+
     public function __construct()
     {
         $this->coursInscrits = new ArrayCollection();
+        $this->actualites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -331,4 +335,37 @@ class Licencie implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Actualite>
+     */
+    public function getActualites(): Collection
+    {
+        return $this->actualites;
+    }
+
+    public function addActualite(Actualite $actualite): self
+    {
+        if (!$this->actualites->contains($actualite)) {
+            $this->actualites[] = $actualite;
+            $actualite->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActualite(Actualite $actualite): self
+    {
+        if ($this->actualites->removeElement($actualite)) {
+            // set the owning side to null (unless already changed)
+            if ($actualite->getAuteur() === $this) {
+                $actualite->setAuteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
 }

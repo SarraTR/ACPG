@@ -21,8 +21,10 @@ services:
             - '../src/Kernel.php'
 
     twig.extension.intl:
-        class: Twig_Extensions_Extension_Intl
+        class: Symfony\Component\Intl\Intl
         tags:
-            -{name: twig.extention}
+            -{ name: twig.extention }
+
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

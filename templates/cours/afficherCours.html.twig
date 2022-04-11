@@ -27,7 +27,7 @@
             {% if chaqueGroupe == niveau or is_granted ('ROLE_ADMIN') %}
 
                 <tr>
-                    <th class="is-center">{{ chaqueCours.date|format_date('full',locale='fr')}}</th>
+                    <th class="is-center">{{ chaqueCours.date|date('l d MM Y' | trans)}}</th>
                     <td>{{ chaqueGroupe.niveau }}</td>
                     <td>{{ chaqueCours.commentaire }}</td>
                     <td>{{ chaqueCours.heureDebut |date("H:m")}} </td>

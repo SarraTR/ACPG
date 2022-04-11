@@ -9,7 +9,7 @@
     <div id="navbarBasicExample" class="navbar-menu ">
         <div class="navbar-brand">
             <a  href="{{ path('accueil_accueil') }}" >
-                <img class="is-align-items-center"  src="{{ asset('image/LogoACPG.jpg') }}" width="92px" >
+                <img class="is-align-items-center"  src="{{ asset('image/LogoACPG.jpg') }}" alt="LOGO DE PATINAGE" width="92px" >
             </a>
         </div>
         <div class="navbar-start">
@@ -75,10 +75,10 @@
                     <a href="{{ path('app_register') }}" class="navbar-item">
                         Ajouter un licencié
                     </a>
-                    <a class="navbar-item">
+                    <a class="navbar-item" href="{{ path('actualite') }}">
                         Ajouter une actualité
                     </a>
-                    <a href="{{ path('cours') }}"class="navbar-item">
+                    <a href="{{ path('cours') }}" class="navbar-item">
                         Ajouter un cours
                     </a>
                 </div>
@@ -86,7 +86,7 @@
             </div>
             {% endif %}
                     {% if not app.user %}
-                        <a href="{{ path('app_login') }}"class="navbar-item">
+                        <a href="{{ path('app_login') }}" class="navbar-item">
                             <strong>Se Connecter</strong>
                         </a>
                     {% endif %}

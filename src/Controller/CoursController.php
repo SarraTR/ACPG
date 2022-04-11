@@ -43,9 +43,11 @@ class CoursController extends AbstractController
         $user = $this->getUser();
         $numeroDeLicence=$this->getUser()->getUserIdentifier();
         $licencie=$licencieRepository->findOneBy(['numeroDeLicence'=>$numeroDeLicence]);
+
         $niveau=$licencie->getNiveau();
         $cours = new Cours();
         $cours=$coursRepository->findAll();
+
         return $this->render('cours/afficherCours.html.twig',
             compact('cours','niveau'),
         );
