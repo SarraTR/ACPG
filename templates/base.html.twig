@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <script src="https://kit.fontawesome.com/67dac588fe.js" crossorigin="anonymous"></script>
-        <title>{% block title %}ACPG | Patinage sur Glace{% endblock %}</title>
+	<head>
+		<meta charset="UTF-8">
+		<script src="https://kit.fontawesome.com/67dac588fe.js" crossorigin="anonymous"></script>
+		<title>
+			{% block title %}ACPG | Patinage sur Glace
+			{% endblock %}
+		</title>
 
-        {% block stylesheets %}
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-            <link href="~bulma-calendar/dist/css/bulma-calendar.min.css" rel="stylesheet">
-            <link rel="stylesheet" href="{{ asset('css/body.css') }}">
-        {% endblock %}
+		{% block stylesheets %}
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+			<link href="~bulma-calendar/dist/css/bulma-calendar.min.css" rel="stylesheet">
+			<link rel="stylesheet" href="{{ asset('css/body.css') }}">
+		{% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
 
-    <header>
-        {% block header %}
-            {% include 'bases/header.html.twig' %}
-        {% endblock %}
-    </header>
-    <body class="body">
-    {% block body %}
-
-
-
-        {% endblock %}
-
-    </body>
-    <footer class="footerPerso">
-        {% block footer %}
-            {% include 'bases/footer.html.twig' %}
-        {% endblock %}
-    </footer>
+	<header>
+		{% block header %}
+			{% include 'bases/header.html.twig' %}
+		{% endblock %}
+	</header>
+	<body class="body fondDeGauche fondDeDroite ">
+		<div class="fondDeGauche"></div>
+		{% block body %}{% endblock %}
+		<div class="fondDeDroite"></div>
+	</body>
+	<footer class="footerPerso">
+		{% block footer %}
+			{% include 'bases/footer.html.twig' %}
+		{% endblock %}
+	</footer>
 
 </html>

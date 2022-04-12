@@ -2,10 +2,6 @@ html{
     height: 100%;
 }
 .body{
-    background-image: url("../image/logoArtistiqueEstompe.svg");
-    background-position: center;
-    background-size: auto;
-    background-repeat: no-repeat;
     width: 100%;
     min-height: 100%;
     height: auto;
@@ -39,4 +35,26 @@ html{
 .button{
     min-width: 140px;
 
+}
+.fondDeGauche{
+    background-image: url("../image/logoArtistiqueEstompe.svg");
+    background-size: 20%;    
+    min-height: 100%;
+    height: auto;
+    display: table;
+    background-position: left;
+    background-repeat: repeat;
+    margin: 0;
+    padding: 0;
+}
+.fondDeDroite{
+    background-image: url("../image/logoFreestyleEstompe.svg");
+    background-size: 20%;    
+    min-height: 100%;
+    background-position: right;
+    background-repeat: repeat;
+    height: auto;
+    display: table;
+    margin: 0;
+    padding: 0;
 }

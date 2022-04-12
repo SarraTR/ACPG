@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	<div class="containerBlanc">
+		<h1 class="title is-3 has-text-centered">Ajouter une actualité</h1>
+		<form method="post" enctype="multipart/form-data">
+			{{ form_start(actualiteFormulaire) }}
+			<div class="field has-addons has-addons-centered is-grouped">
+				<p class="control has-icons-left has-icons-right">
+					{{ form_widget(actualiteFormulaire.titre,{'attr':{'class':'input form-control', 'placeholder':'Titre'}}) }}
+				</p>
+			</div>
+			<div class="field has-addons has-addons-centered is-grouped">
+				<p class="control has-icons-left has-icons-right">
+					{{ form_widget(actualiteFormulaire.textActu,{'attr':{'class':'textarea' ,'placeholder':'Quelle est actualité du jour !'}}) }}
+				</p>
+			</div>
+			<div class="field has-addons has-addons-centered is-grouped">
+				<p class="control has-icons-left has-icons-right">
+					{{ form_widget(actualiteFormulaire.fichierImage,{'attr':{'class':'input form-control button is-rounded is-light'}}) }}
+				</p>
+			</div>
+
+
+			<div class="field field is-grouped is-grouped-centered">
+				<p class="control">
+					<button class="button is-rounded is-light" type="submit">
+						Ajouter une actualité
+					</button>
+				</p>
+				<p class="control">
+					<a class="button is-rounded is-black" href="{{ path('accueil_accueil') }}">
+						Annuler
+					</a>
+				</p>
+			</div>
+			{{ form_end(actualiteFormulaire) }}
+		</form>
+	</div>
+
+
+{% endblock %}

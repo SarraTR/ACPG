@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CoursController extends AbstractController
 {
     #[Route('/', name: '')]
-    public function index(Request $request, EntityManagerInterface $entityManager, ): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
         $cours = new Cours();

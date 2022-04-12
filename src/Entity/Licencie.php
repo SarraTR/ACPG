@@ -76,13 +76,13 @@ class Licencie implements UserInterface, PasswordAuthenticatedUserInterface
     private $coursInscrits;
 
     #[ORM\OneToMany(mappedBy: 'auteur', targetEntity: Actualite::class)]
-    private $actualites;
-
+    private $actualite;
 
     public function __construct()
     {
         $this->coursInscrits = new ArrayCollection();
         $this->actualites = new ArrayCollection();
+        $this->actualite = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -339,15 +339,15 @@ class Licencie implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Actualite>
      */
-    public function getActualites(): Collection
+    public function getActualite(): Collection
     {
-        return $this->actualites;
+        return $this->actualite;
     }
 
     public function addActualite(Actualite $actualite): self
     {
-        if (!$this->actualites->contains($actualite)) {
-            $this->actualites[] = $actualite;
+        if (!$this->actualite->contains($actualite)) {
+            $this->actualite[] = $actualite;
             $actualite->setAuteur($this);
         }
 
@@ -356,7 +356,7 @@ class Licencie implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeActualite(Actualite $actualite): self
     {
-        if ($this->actualites->removeElement($actualite)) {
+        if ($this->actualite->removeElement($actualite)) {
             // set the owning side to null (unless already changed)
             if ($actualite->getAuteur() === $this) {
                 $actualite->setAuteur(null);
@@ -366,6 +366,7 @@ class Licencie implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+ 
 
 
 }
