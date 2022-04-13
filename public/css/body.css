@@ -1,60 +1,40 @@
-html{
-    height: 100%;
+html {
+  height: 100%;
 }
-.body{
-    width: 100%;
-    min-height: 100%;
-    height: auto;
-    display: table;
-    margin: 0;
-    padding: 0;
+.body {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  display: table;
+  margin: 0;
+  padding: 0;
 }
 .footerPerso {
-    display : table-row;
-    height: 100px; /* à titre d'exemple */
-    background-color: #5eb5e0;
-    text-align: center;
+  display: table-row;
+  height: 100px; /* à titre d'exemple */
+  background-color: #5eb5e0;
+  text-align: center;
 }
-.textCentrer{
-    text-align: center;
-    margin: auto;
+.textCentrer {
+  text-align: center;
+  margin: auto;
 }
-.navbar{
-    margin-bottom: 3%;
+.navbar {
+  margin-bottom: 3%;
 }
-.navbar, .button{
-    background-color: #5eb5e0;
+.navbar,
+.button {
+  background-color: #5eb5e0;
 }
 
-.containerBlanc{
-    background-color: #5eb5e0;
-    max-width: 90%;
-    display: table;
-    margin: auto;
+.containerBlanc {
+  background-color: #5eb5e0;
+  max-width: 90%;
+  display: table;
+  margin: auto;
 }
-.button{
-    min-width: 140px;
+.button {
+  min-width: 140px;
+}
 
-}
-.fondDeGauche{
-    background-image: url("../image/logoArtistiqueEstompe.svg");
-    background-size: 20%;    
-    min-height: 100%;
-    height: auto;
-    display: table;
-    background-position: left;
-    background-repeat: repeat;
-    margin: 0;
-    padding: 0;
-}
-.fondDeDroite{
-    background-image: url("../image/logoFreestyleEstompe.svg");
-    background-size: 20%;    
-    min-height: 100%;
-    background-position: right;
-    background-repeat: repeat;
-    height: auto;
-    display: table;
-    margin: 0;
-    padding: 0;
-}
+

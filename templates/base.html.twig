@@ -24,15 +24,15 @@
 			{% include 'bases/header.html.twig' %}
 		{% endblock %}
 	</header>
-	<body class="body fondDeGauche fondDeDroite ">
-		<div class="fondDeGauche"></div>
-		{% block body %}{% endblock %}
-		<div class="fondDeDroite"></div>
-	</body>
-	<footer class="footerPerso">
-		{% block footer %}
-			{% include 'bases/footer.html.twig' %}
-		{% endblock %}
-	</footer>
 
-</html>
+	<body class="body"> 
+	{% block body %}{% endblock %}
+	</body>
+
+		<footer class="footerPerso">
+			{% block footer %}
+				{% include 'bases/footer.html.twig' %}
+			{% endblock %}
+		</footer>
+
+	</html>
